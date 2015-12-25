@@ -9,6 +9,9 @@
     "predis/predis": "*",
     "monolog/monolog": "1.2.*"
   },
+  "autoload":{
+   "psr-4": {"Zi\\": "src/"}
+  },
   "authors": [
       {
           "name": "Jason Zeng",
