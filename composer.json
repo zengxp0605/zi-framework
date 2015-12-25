@@ -1,0 +1,19 @@
+{
+  "name": "jason/zi-framework",
+  "description": "My Personal Framework.",
+  "keywords": ["framework", "zi"],
+  "require": {
+    "php": ">=5.4.0",
+    "noahbuscher/macaw": "dev-master",
+    "illuminate/database": "*",
+    "filp/whoops": "*",
+    "predis/predis": "*",
+    "monolog/monolog": "1.2.*"
+  },
+  "authors": [
+      {
+          "name": "Jason Zeng",
+          "email": "xiaoping_zeng@foxmail.com"
+      }
+  ]
+}
