@@ -4,7 +4,6 @@
   "keywords": ["framework", "zi"],
   "require": {
     "php": ">=5.4.0",
-    "noahbuscher/macaw": "*",
     "illuminate/database": "*",
     "filp/whoops": "*",
     "predis/predis": "*",
