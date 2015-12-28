@@ -2,7 +2,7 @@
 
 namespace Zi;
 
-// ¼òµ¥Â·ÓÉ
+// ç®€å•è·¯ç”±
 class Route
 {
 
@@ -22,7 +22,7 @@ class Route
 
     public static $error_callback;
 
-	public static $useAutoRoute = true;// ×Ô¶¯Æ¥ÅäÂ·ÓÉ
+	public static $useAutoRoute = true;// è‡ªåŠ¨åŒ¹é…è·¯ç”±
     /**
      * Defines a route w/ callback and method
      */
@@ -30,7 +30,7 @@ class Route
     {
         
         $uri = dirname($_SERVER['PHP_SELF']).$params[0];
-		$uri = str_replace('\\', '/', $uri); // ×Ô¼ºÌí¼ÓµÄ
+		$uri = str_replace('\\', '/', $uri); // è‡ªå·±æ·»åŠ çš„
         $callback = $params[1];
 
         array_push(self::$routes, $uri);
@@ -105,7 +105,7 @@ class Route
                 }
             }
         } else {
-			if(self::$useAutoRoute){  // °´ÕÕ¹æÔò×Ô¶¯Æ¥ÅäÏàÓ¦µÄÂ·ÓÉ
+			if(self::$useAutoRoute){  // æŒ‰ç…§è§„åˆ™è‡ªåŠ¨åŒ¹é…ç›¸åº”çš„è·¯ç”±
 				self::_autoRoute($uri);
 			}
             // check if defined with regex
@@ -181,21 +181,21 @@ class Route
 				$isHome = true;
 			if(isset($aryUri[1])){
 				$actionName =  $aryUri[1];
-				$aryUri = array_splice($aryUri,2,count($aryUri)); //ÅÅ³ýÇ°Á½¸öÔªËØ
+				$aryUri = array_splice($aryUri,2,count($aryUri)); //æŽ’é™¤å‰ä¸¤ä¸ªå…ƒç´ 
 			}else{
 				$_caseOneLevel =  true;
 				$actionName =  $aryUri[0];
-				/*if($controllerName == $actionName){  // ÓÐ¸öbug  Home/home ÕâÖÖÂ·ÓÉ·ÃÎÊÊ±,
+				/*if($controllerName == $actionName){  // æœ‰ä¸ªbug  Home/home è¿™ç§è·¯ç”±è®¿é—®æ—¶,
 					$actionName = 'index';
 				}*/
-				$aryUri = array_splice($aryUri,1,count($aryUri)); //ÅÅ³ýÊ×¸öÔªËØ
+				$aryUri = array_splice($aryUri,1,count($aryUri)); //æŽ’é™¤é¦–ä¸ªå…ƒç´ 
 			}
 			$controllerFullName = 'App\Controllers\\'.$controllerName.'Controller';
 			$classMap = $globalClassLoader->getClassMap();
 			//die(var_dump(isset($classMap[$controllerFullName])));
 			if(isset($classMap[$controllerFullName])){  
 				$controller = new $controllerFullName();
-				if(method_exists($controller,$actionName)){  // µ÷ÓÃ¿ØÖÆÆ÷ÄÚµÄ·½·¨
+				if(method_exists($controller,$actionName)){  // è°ƒç”¨æŽ§åˆ¶å™¨å†…çš„æ–¹æ³•
 					self::_run($controller,$controllerName,$actionName,$aryUri);
 				}else if(method_exists($controllerFullName,'index') && $_caseOneLevel ){
 					self::_run($controller,$controllerName,'index',$aryUri);
@@ -220,7 +220,7 @@ class Route
 	private static function _run($controller,$controllerName,$actionName,& $aryUri){
 			//var_dump($aryUri);
 			if(count($aryUri) > 0){
-				$controller->uriParams = $aryUri; // ±£Áô±¸ÓÃ
+				$controller->uriParams = $aryUri; // ä¿ç•™å¤‡ç”¨
 				while($aryUri){
 					$key = array_shift($aryUri);
 					$val = array_shift($aryUri);
@@ -229,7 +229,7 @@ class Route
 				}
 			}
 			//var_dump(get_object_vars($controller));
-			// TODO  ±äÁ¿¹ýÂË
+			// TODO  å˜é‡è¿‡æ»¤
 			$controller->__CONTROLLER__ = $controllerName;
 			$controller->__ACTION__ = $actionName;
 			try{
