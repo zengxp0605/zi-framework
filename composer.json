@@ -3,11 +3,7 @@
   "description": "My Personal Framework.",
   "keywords": ["framework", "zi"],
   "require": {
-    "php": ">=5.4.0",
-    "illuminate/database": "*",
-    "filp/whoops": "*",
-    "predis/predis": "*",
-    "monolog/monolog": "1.2.*"
+    "php": ">=5.4.0"
   },
   "autoload":{
    "psr-4": {"Zi\\": "src/"}
