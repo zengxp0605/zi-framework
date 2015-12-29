@@ -4,9 +4,12 @@ namespace Zi;
 
 /**
  * 获取配置项 php|json
+ * 
+ * ----------------------------------------------
  *  eg:
  *  Config::setFileFormat('json');
- *  var_dump(Config::get('database.host'));
+ *  $host = Config::get('database.host');
+ * ----------------------------------------------
  */
 class Config {
 
