@@ -33,7 +33,7 @@ class Route {
     );
 
     public static function dispatch() {
-        $_uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+        $_uri = parse_url(str_replace('.php','',$_SERVER['REQUEST_URI']), PHP_URL_PATH);
         self::$_aryUri = explode('/', trim($_uri, '/'));
         list($_controllerName, $_actionName) = self::_getControllAndActionName();
         //var_dump(self::$_aryUri);

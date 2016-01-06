@@ -44,6 +44,23 @@ class Controller {
         }
     }
 
+    public function makeUrl($url) {
+
+        return $url;
+    }
+
+    public function error($message = 'Error', $redirectUrl = '', $isAjax = false) {
+        if ($isAjax) {
+            echo 'ajax';
+            exit;
+        }
+        header('Content-type:text/html;charset=utf-8;');
+        echo "<center style=\"font-size:18px;color:red;margin-top:50px;\">{$message}</center>"
+        . "<script>setTimeout(function(){" .( $redirectUrl ? "window.location.href='{$redirectUrl}'" : "window.history.back(-1);" ). "},2000);</script>";
+
+        exit;
+    }
+
     public function __get($name) {
         return property_exists($this, $name) ? $this->$name : null;
     }
