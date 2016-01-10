@@ -49,15 +49,25 @@ class Controller {
         return $url;
     }
 
-    public function error($message = 'Error', $redirectUrl = '', $isAjax = false) {
+    public function error($message = 'Error', $redirectUrl = '', $isAjax = false, $jump = true) {
+        return $this->_jumpMsg($message, $redirectUrl, $isAjax, $jump, 'error');
+    }
+
+    public function success($message = 'Error', $redirectUrl = '', $isAjax = false, $jump = true) {
+        return $this->_jumpMsg($message, $redirectUrl, $isAjax, $jump, 'success');
+    }
+
+    private function _jumpMsg($message = 'Error', $redirectUrl = '', $isAjax = false, $jump = true, $type = 'error') {
         if ($isAjax) {
             echo 'ajax';
             exit;
         }
         header('Content-type:text/html;charset=utf-8;');
-        echo "<center style=\"font-size:18px;color:red;margin-top:50px;\">{$message}</center>"
-        . "<script>setTimeout(function(){" .( $redirectUrl ? "window.location.href='{$redirectUrl}'" : "window.history.back(-1);" ). "},2000);</script>";
-
+        $color = $type == 'error' ? 'red' : 'green';
+        echo "<center style=\"font-size:18px;color:{$color};margin-top:50px;\">{$message}</center>";
+        if (!$isAjax && $jump === true) {
+            echo "<script>setTimeout(function(){" . ( $redirectUrl ? "window.location.href='{$redirectUrl}'" : "window.history.back(-1);" ) . "},2000);</script>";
+        }
         exit;
     }
 
